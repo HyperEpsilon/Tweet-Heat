@@ -50,6 +50,8 @@ heatArray = [(53.60100728, -113.49972797),
 (45.04892257, -122.97495467)
 ]
 
+empty = []
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
