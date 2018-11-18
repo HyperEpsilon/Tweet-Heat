@@ -1,7 +1,8 @@
 from flask import Flask, send_file, render_template
 from flask_socketio import SocketIO, emit
 import mapGen
-import steam-test
+from subprocess import Popen
+import stream_twitter
 import os
 
 heatArray = [(53.60100728, -113.49972797),
@@ -67,5 +68,5 @@ def index():
     return render_template("index.html")
 
 if __name__ == '__main__':
-    os.system('steam-test.py')
+    p=Popen(['watch','python stream_twitter'])
     socketio.run(app)
