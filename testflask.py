@@ -10,7 +10,10 @@ socketio = SocketIO(app)
 @socketio.on('mapUpdateEvent')
 def generateMap():
     mapGen.createHeatMap()
-    return send_file('heatMap.html')
+    emit('mapCreated')
+
+    def show_map():
+        return flask.send_file('/maps/map.html')
 
 @app.route('/')
 def index():

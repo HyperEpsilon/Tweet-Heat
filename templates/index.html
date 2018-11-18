@@ -4,17 +4,18 @@
   <script type="text/javascript" charset="utf-8">
       var socket = io.connect('http://' + document.domain + ':' + location.port);
       socket.on('connect', function() {
-          setInterval(emitUpdateSignal, 5000);
+          setInterval(emitUpdateSignal, 500000);
       });
       function emitUpdateSignal(){
         socket.emit('mapUpdateEvent')
       }
-      socket.on('',function() {
-
+      socket.on('mapCreated',function() {
+          console.log("update DOM Now");
+          document.getElementById('theMapFrame').contentWindow.location.reload();
       });
   </script>
   </head>
   <body>
-     <iframe src="{{ url_for('templates', filename='heatMap.html') }}"></iframe>
+     <iframe id = "theMapFrame" src="/static/heatMap.html"></iframe>
   </body>
 </html> 
