@@ -5,8 +5,8 @@ import random
 from folium.plugins import HeatMap
 
 # generate the map
-ed = {'lat': 53.540996, 'lon': -113.497746}
-mainMap = folium.Map(location=[ed['lat'], ed['lon']], zoom_start=7)
+ed = {'lat': 53.540996, 'lon': 0-113.497746 }
+mainMap = folium.Map(location=[ed['lat'], ed['lon']], zoom_start=10)
 
 # add all layers
 """
@@ -17,7 +17,7 @@ folium.TileLayer('openstreetmap').add_to(mainMap)
 folium.TileLayer('Stamen Terrain').add_to(mainMap)
 """
 # vanilla map output
-mainMap.save('vanillaMap.html')
+# mainMap.save('vanillaMap.html')
 
 
 # add layer controller
@@ -25,17 +25,19 @@ mainMap.save('vanillaMap.html')
 
 pingPoints = {'lat': [], 'lon': []}
 
-for i in range(500):
-    pingPoints['lat'].append(ed['lat'])
-    pingPoints['lon'].append(ed['lon'])
+for i in range(499):
+    pingPoints['lat'].append(ed['lat']+random.randrange(-10,10)*0.001)
+    pingPoints['lon'].append(ed['lon']+random.randrange(-10,10)*0.001)
 
 print(pingPoints)
+print(list(zip(pingPoints['lat'], pingPoints['lon'])))
 
 
-heat = HeatMap( list(zip(pingPoints['lat'], pingPoints['lon'])),
-                   min_opacity=0.2,
-                   radius=17, blur=15,
-                   max_zoom=1,
+heat = HeatMap(list(zip(pingPoints['lat'], pingPoints['lon'])),
+               min_opacity=0.2,
+               max_val=1.0,
+               radius=15, blur=15,
+               max_zoom=1,
                  )
 
 mainMap.add_child(heat)
