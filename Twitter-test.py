@@ -13,6 +13,18 @@ api = tweepy.API(auth)
 ## Bounding box coordingates: tweet.place.bounding_box.coordinates[0]
 
 tweets = api.home_timeline()
+search = api.search(rpp=20, geocode="34.2920145,-83.8976776,10km")
+
+#for tweet in tweepy.Cursor(api.search, geocode="34.2920145,-83.8976776,10km").items(10):
+    #print(tweet)
+
+results = []
+for tweet in tweepy.Cursor(api.search, geocode="53.540996,-113.497746,26km").items(1000):
+    results.append(tweet)
+
+filtered = [y for y in results if (y.place or y.coordinates)]
+
+
 #tweets = api.user_timeline(351978460, count=5)
-for tweet in tweets:
-    print(tweet.place)
+#for tweet in tweets:
+    #print(tweet.place)
