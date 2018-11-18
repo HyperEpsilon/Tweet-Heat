@@ -12,9 +12,6 @@ def generateMap():
     mapGen.createHeatMap()
     emit('mapCreated')
 
-    def show_map():
-        return flask.send_file('/maps/map.html')
-
 @app.route('/')
 def index():
     return render_template("index.html")

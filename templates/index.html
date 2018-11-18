@@ -4,10 +4,18 @@
   <script type="text/javascript" charset="utf-8">
       var socket = io.connect('http://' + document.domain + ':' + location.port);
       socket.on('connect', function() {
-          setInterval(emitUpdateSignal, 500000);
+          setInterval(emitUpdateSignal, 5000);
       });
       function emitUpdateSignal(){
-        socket.emit('mapUpdateEvent')
+        var theMapIframe = document.getElementById('theMapFrame').contentWindow;
+        // mapID = theIframe.document.body.getElementsByClassName("folium-map")[0].id
+        var mapID = theIframe.document.body.childNodes[1].id;
+        var mapObj = theMapIframe[mapID];
+        var lat = mapObj.getCenter()["lat"];
+        var lng = mapObj.getCenter()["lng"];
+        var zoom = mapObj.getZoom();
+
+        socket.emit('mapUpdateEvent', data = (lat, lng, zoom) );
       }
       socket.on('mapCreated',function() {
           console.log("update DOM Now");

@@ -5,8 +5,8 @@ from folium.plugins import HeatMap
 
 def createHeatMap():
     # generate the map
-    ed = {'lat': 53.540996, 'lon': 0-113.497746 }
-    mainMap = folium.Map(location=[ed['lat'], ed['lon']], zoom_start=10)
+    ed = {'lat': 53.540996, 'lon': a-113.497746 }
+    mainMap = folium.Map(location=[ed['lat'], ed['lon']], zoom_start=10, no_wrap=True)
 
     # add all layers
     """
