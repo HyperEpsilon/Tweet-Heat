@@ -1,38 +1,45 @@
 import folium
 import numpy as num
 import pandas as pd
+import random
 from folium.plugins import HeatMap
 
 # generate the map
-mainMap = folium.Map(location=[53.540996, -113.497746], zoom_start=7 )
+ed = {'lat': 53.540996, 'lon': -113.497746}
+mainMap = folium.Map(location=[ed['lat'], ed['lon']], zoom_start=7)
 
 # add all layers
+"""
 folium.TileLayer('Mapbox Bright').add_to(mainMap)
 folium.TileLayer('Mapbox Control Room').add_to(mainMap)
 folium.TileLayer('Stamen Toner').add_to(mainMap)
 folium.TileLayer('openstreetmap').add_to(mainMap)
 folium.TileLayer('Stamen Terrain').add_to(mainMap)
-
-# add layer controller
-folium.LayerControl().add_to(mainMap)
-
-# test save
+"""
+# vanilla map output
 mainMap.save('vanillaMap.html')
 
-"""""
-pingPoints = []
 
-max_amount = 10
+# add layer controller
+# folium.LayerControl().add_to(mainMap)
+
+pingPoints = {'lat': [], 'lon': []}
+
+for i in range(500):
+    pingPoints['lat'].append(ed['lat'])
+    pingPoints['lon'].append(ed['lon'])
+
+print(pingPoints)
 
 
-
-hm_wide = HeatMap( list(zip(for_map.lat.values, for_map.lon.values, for_map.Amount.values)),
+heat = HeatMap( list(zip(pingPoints['lat'], pingPoints['lon'])),
                    min_opacity=0.2,
-                   max_val=max_amount,
                    radius=17, blur=15,
                    max_zoom=1,
                  )
 
-folium.GeoJson(district23).add_to(hmap)
-hmap.add_child(hm_wide)
-"""
+mainMap.add_child(heat)
+
+# heatMap output
+mainMap.save('heatMap.html')
+
