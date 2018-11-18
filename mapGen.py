@@ -6,7 +6,14 @@ from folium.plugins import HeatMap
 def createHeatMap():
     # generate the map
     ed = {'lat': 53.540996, 'lon': 0-113.497746 }
-    mainMap = folium.Map(location=[ed['lat'], ed['lon']], zoom_start=10)
+    mainMap = folium.Map(
+        location=[ed['lat'],
+        ed['lon']],
+        zoom_start=10,
+        no_wrap=True,
+        world_copy_jump=True,
+
+    )
 
     # add all layers
     """
@@ -27,8 +34,8 @@ def createHeatMap():
         pingPoints['lat'].append(ed['lat']+random.randrange(-100,100)*0.01)
         pingPoints['lon'].append(ed['lon']+random.randrange(-100,100)*0.01)
 
-    print(pingPoints)
-    print(list(zip(pingPoints['lat'], pingPoints['lon'])))
+    #print(pingPoints)
+    #print(list(zip(pingPoints['lat'], pingPoints['lon'])))
 
     heat = HeatMap([(53.60100728, -113.49972797),
 (43.78865482, -110.9577686),
@@ -85,4 +92,4 @@ def createHeatMap():
     mainMap.save('static/heatMap.html')
 
 if __name__ == "__main__":
-    creatHeatMap()
+    createHeatMap()
