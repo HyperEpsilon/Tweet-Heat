@@ -4,7 +4,7 @@
   <script type="text/javascript" charset="utf-8">
       var socket = io.connect('http://' + document.domain + ':' + location.port);
       socket.on('connect', function() {
-          setInterval(emitUpdateSignal, 5000);
+          setInterval(emitUpdateSignal, 999999999999999999999);
       });
       function emitUpdateSignal(){
         socket.emit('mapUpdateEvent')

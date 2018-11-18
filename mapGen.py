@@ -7,11 +7,11 @@ from folium.plugins import HeatMap
 
 #createHeatMap(heatArray)
 
-def createHeatMap(heat_Map_Array, start_lat=53.540996, start_lon=-113.497746):
+def createHeatMap(heat_Map_Array, start_lat=53.540996, start_lon=-113.497746, start_zoom = 10):
     # generate the map
     mainMap = folium.Map(
         location=[start_lat, start_lon],
-        zoom_start=10,
+        zoom_start=start_zoom,
         no_wrap=True,
         world_copy_jump=True,
 
