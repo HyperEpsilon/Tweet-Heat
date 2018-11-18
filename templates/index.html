@@ -20,13 +20,13 @@
         var map2ID = theMap2Iframe.document.body.childNodes[1].id;
         var map2Obj = theMap2Iframe[map2ID];
 
-        map2Obj.setView([lat,lon],zoom);
+        //map2Obj.setView([lat,lon],zoom);
         //map2Obj.setCenter()["lng"] = lon;
         //map2Obj.setZoom(zoom);
 
         console.log(mapObj.getCenter()["lng"]);
         console.log(lon);
-        console.log(map2Obj.getCenter()["lng"]);
+        //console.log(map2Obj.getCenter()["lng"]);
 
         socket.emit('mapUpdateEvent', lat, lon, zoom);
       }
