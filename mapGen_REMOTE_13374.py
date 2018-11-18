@@ -37,7 +37,6 @@ def get_data_points():
 
 def createHeatMap(heat_Map_Array, start_lat=53.540996, start_lon=-113.497746, start_zoom = 10):
     # generate the map
-
     mainMap = folium.Map(
         location=[start_lat, start_lon],
         zoom_start=start_zoom,
@@ -45,7 +44,6 @@ def createHeatMap(heat_Map_Array, start_lat=53.540996, start_lon=-113.497746, st
         world_copy_jump=True,
 
     )
-
 
     # add all layers
     """
