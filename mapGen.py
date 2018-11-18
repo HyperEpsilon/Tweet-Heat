@@ -3,7 +3,7 @@ import numpy as num
 import random
 from folium.plugins import HeatMap
 
-def creatHeatMap():
+def createHeatMap():
     # generate the map
     ed = {'lat': 53.540996, 'lon': 0-113.497746 }
     mainMap = folium.Map(location=[ed['lat'], ed['lon']], zoom_start=10)
