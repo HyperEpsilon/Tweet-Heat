@@ -19,7 +19,7 @@ def get_data_points():
     path="./All_tweets.db"
     connect(path)      
     
-    query = "SELECT lat, lon FROM tweets"
+    query = "SELECT lat, lon FROM tweets ORDER BY date DESC LIMIT 5000"
     tweets = cursor.execute(query)
     all_tweets = [tweet for tweet in tweets]
     
@@ -64,12 +64,15 @@ def createHeatMap(heat_Map_Array, start_lat=53.540996, start_lon=-113.497746, st
     #print(pingPoints)
     #print(list(zip(pingPoints['lat'], pingPoints['lon'])))
 
+    #heat = HeatMap(
+            #heat_Map_Array,
+            #min_opacity=0.2,
+            #max_val=1.0,
+            #radius=15, blur=15,
+            #max_zoom=1,)
+    
     heat = HeatMap(
-            heat_Map_Array,
-            min_opacity=0.2,
-            max_val=1.0,
-            radius=15, blur=15,
-            max_zoom=1,)
+        heat_Map_Array, radius=15)
 
     mainMap.add_child(heat)
 
