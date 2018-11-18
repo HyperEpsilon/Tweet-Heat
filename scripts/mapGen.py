@@ -1,6 +1,7 @@
 import folium
 import numpy as num
 import random
+from folium.plugins import HeatMap
 
 def creatHeatMap():
     # generate the map
@@ -39,3 +40,6 @@ def creatHeatMap():
 
     # heatMap output
     mainMap.save('heatMap.html')
+
+if __name__ == "__main__":
+    creatHeatMap()
