@@ -58,24 +58,8 @@ def find_center(place):
         lat_list = [x[0] for x in cor_list]
         lon_list = [x[1] for x in cor_list]
         
-        #try:
-            #area = 0
-            #for i in range(len(cor_list)-1):
-                #area += lat_list[i]*lon_list[i+1]-lat_list[i+1]*lon_list[i]
-            #area = 0.5 * (area)
-            
-            #c_x = 0
-            #for i in range(len(lat_list)-1):
-                #c_x += (lat_list[i]+lat_list[i+1])*(lat_list[i]*lon_list[i+1]-lat_list[i+1]*lon_list[i])
-            #c_x = (c_x/(6*area))
-            
-            #c_y = 0
-            #for i in range(len(lon_list)-1):
-                #c_y += (lon_list[i]+lon_list[i+1])*(lat_list[i]*lon_list[i+1]-lat_list[i+1]*lon_list[i])
-            #c_y = (c_y/(6*area))        
-        #except ZeroDivisionError:
-        c_x = lat_list[0]
-        c_y = lon_list[0]
+        c_x = (max(lat_list) + min(lat_list))/2.0
+        c_y = (max(lon_list) + min(lon_list))/2.0
         
         
         loc_centres[place.id] = [c_y, c_x]
