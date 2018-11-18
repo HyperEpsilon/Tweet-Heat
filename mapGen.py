@@ -19,7 +19,7 @@ def get_data_points():
     path="./All_tweets.db"
     connect(path)      
     
-    query = "SELECT lat, lon FROM tweets ORDER BY date DESC LIMIT 5000"
+    query = "SELECT lat, lon FROM tweets ORDER BY date DESC LIMIT 100"
     tweets = cursor.execute(query)
     all_tweets = [tweet for tweet in tweets]
     

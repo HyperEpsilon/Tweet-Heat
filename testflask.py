@@ -58,6 +58,7 @@ socketio = SocketIO(app)
 
 @socketio.on('mapUpdateEvent')
 def generateMap(lat,lon,zoom):
+    print("I got called")
     
     heatArray = mapGen.get_data_points()
 
@@ -72,3 +73,4 @@ def index():
 if __name__ == '__main__':
     p=Popen(['python', '.\stream_twitter.py'], shell=True)
     socketio.run(app)
+    
