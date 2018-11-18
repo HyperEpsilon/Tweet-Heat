@@ -52,9 +52,9 @@ app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
 @socketio.on('mapUpdateEvent')
-def generateMap():
-
-    mapGen.createHeatMap(heatArray,53.540996,0-113.497746 )
+def generateMap(lat,long,zoom):
+    #  53.540996,0-113.497746
+    mapGen.createHeatMap(heatArray, lat, long, zoom )
     emit('mapCreated')
 
 @app.route('/')
