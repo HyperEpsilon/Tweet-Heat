@@ -10,16 +10,18 @@
       function emitUpdateSignal(){
         var theMapIframe = document.getElementById('theMapFrame').contentWindow;
         // mapID = theIframe.document.body.getElementsByClassName("folium-map")[0].id
-        var mapID = theIframe.document.body.childNodes[1].id;
+        var mapID = theMapIframe.document.body.childNodes[1].id;
         var mapObj = theMapIframe[mapID];
         var lat = mapObj.getCenter()["lat"];
-        var lng = mapObj.getCenter()["lng"];
+        var long = mapObj.getCenter()["lng"];
         var zoom = mapObj.getZoom();
+        //console.log(lat)
+        //console.log(long)
+        //console.log(zoom)
 
-        socket.emit('mapUpdateEvent', data = (lat, lng, zoom) );
+        socket.emit('mapUpdateEvent', lat, long, zoom);
       }
       socket.on('mapCreated',function() {
-          console.log("update DOM Now");
           document.getElementById('theMapFrame').contentWindow.location.reload();
       });
   </script>
