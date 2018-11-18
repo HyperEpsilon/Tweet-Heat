@@ -12,6 +12,7 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 tweets = []
+ids = []
 just_coords = []
 all_coords = []
 loc_centres = {}
@@ -123,25 +124,28 @@ class MyStreamListener(tweepy.StreamListener):
         if status.place:
             tweets.append(status)
             
-            print(status.author.name, status.text, status.place.full_name, '==========', sep='\n')
+            if status.id not in ids:
+                ids.append(status.id)
             
-            if status.coordinates:
-                just_coords.append(tuple(status.coordinates['coordinates'][::-1]))
-                all_coords.append(tuple(status.coordinates['coordinates'][::-1]))
+                print(status.author.name, status.text, status.place.full_name, '==========', sep='\n')
                 
-                #self.add_tweet(status.id, int(status.created_at.timestamp()), status.coordinates['coordinates'][::-1])
-                self.add_tweet(status.id, int(status.created_at.timestamp()), find_center(status.place))
-                self.connection.commit()
-            else:
-                all_coords.append(tuple(find_center(status.place)))
+                if status.coordinates:
+                    just_coords.append(tuple(status.coordinates['coordinates'][::-1]))
+                    all_coords.append(tuple(status.coordinates['coordinates'][::-1]))
+                    
+                    #self.add_tweet(status.id, int(status.created_at.timestamp()), status.coordinates['coordinates'][::-1])
+                    self.add_tweet(status.id, int(status.created_at.timestamp()), find_center(status.place))
+                    self.connection.commit()
+                else:
+                    all_coords.append(tuple(find_center(status.place)))
+                    
+                    self.add_tweet(status.id, int(status.created_at.timestamp()), find_center(status.place))
+                    self.connection.commit()
                 
-                self.add_tweet(status.id, int(status.created_at.timestamp()), find_center(status.place))
-                self.connection.commit()
-            
-            
-            if len(tweets) >= 100:
-                self.connection.close()
-                return False
+                
+                if len(ids) >= 100:
+                    self.connection.close()
+                    return False
     
     def on_error(self, status_code):
         print(status_code)
