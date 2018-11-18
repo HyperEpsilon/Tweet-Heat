@@ -13,13 +13,13 @@
         var mapID = theMapIframe.document.body.childNodes[1].id;
         var mapObj = theMapIframe[mapID];
         var lat = mapObj.getCenter()["lat"];
-        var long = mapObj.getCenter()["lng"];
+        var lon = mapObj.getCenter()["lng"];
         var zoom = mapObj.getZoom();
         //console.log(lat)
         //console.log(long)
         //console.log(zoom)
 
-        socket.emit('mapUpdateEvent', lat, long, zoom);
+        socket.emit('mapUpdateEvent', lat, lon, zoom);
       }
       socket.on('mapCreated',function() {
           document.getElementById('theMapFrame').contentWindow.location.reload();
