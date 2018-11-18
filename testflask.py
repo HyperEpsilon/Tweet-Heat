@@ -1,6 +1,7 @@
 from flask import Flask, send_file, render_template
 from flask_socketio import SocketIO, emit
 import mapGen
+import steam-test
 
 heatArray = [(53.60100728, -113.49972797),
 (43.78865482, -110.9577686),
@@ -52,13 +53,13 @@ app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
 @socketio.on('mapUpdateEvent')
-def generateMap():
+def generateMap(lat,lon,zoom):
+    
+    heatArray = mapGen.get_data_points()
 
-    mapGen.createHeatMap(heatArray,53.540996,0-113.497746 )
+    #  53.540996,0-113.497746
+    mapGen.createHeatMap(heatArray, lat, lon, zoom )
     emit('mapCreated')
-
-    def show_map():
-        return flask.send_file('/maps/map.html')
 
 @app.route('/')
 def index():
