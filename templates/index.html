@@ -4,7 +4,11 @@
   <script type="text/javascript" charset="utf-8">
       var socket = io.connect('http://' + document.domain + ':' + location.port);
       socket.on('connect', function() {
+<<<<<<< HEAD
           setInterval(emitUpdateSignal, 5000);
+=======
+          setInterval(emitUpdateSignal, 999999999999999999999);
+>>>>>>> e07e6497583189565bccefb919e526eddb8f80c2
       });
       function emitUpdateSignal(){
         var theMapIframe = document.getElementById('theMapFrame').contentWindow;
