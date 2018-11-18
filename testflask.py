@@ -1,14 +1,22 @@
-from flask import Flask
-from flask import send_file
+from flask import Flask, send_file, render_template
+from flask_socketio import SocketIO, emit
+import mapGen
+
+
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+@socketio.on('mapUpdateEvent')
+def map():
+    mapGen.createHeatMap()
+    print("I ran bitches")
 
-@app.route('/route2/')
-def route_2():
-    return send_file('icon.png', mimetype='image/png')
+    return send_file('heatMap.html', mimetype='text/html')
 
+@app.route('/sms', methods=['GET','POST'])
+def index():
+    return render_template("index.html")
 if __name__ == "__main__":
-    app.run()
+    socketio.run(app)
+    #app.run(debug = True)

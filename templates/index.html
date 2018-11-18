@@ -1,0 +1,16 @@
+<html>  
+  <head>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+    <script type='text/javascript' charset="utf-8">
+        var socket = socketio.connect('http://' + document.domain + ':' + location.port);
+        function emitSignal() {
+            socket.emit('mapUpdateEvent');
+            console.log("I ran first")
+        }
+        setInterval(emitSignal, 5000);
+    </script>
+    <title>Flask Shop</title>
+  </head>
+  <body>
+  </body>
+</html> 
