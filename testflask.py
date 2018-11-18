@@ -2,6 +2,7 @@ from flask import Flask, send_file, render_template
 from flask_socketio import SocketIO, emit
 import mapGen
 import steam-test
+import os
 
 heatArray = [(53.60100728, -113.49972797),
 (43.78865482, -110.9577686),
@@ -66,4 +67,5 @@ def index():
     return render_template("index.html")
 
 if __name__ == '__main__':
+    os.system('steam-test.py')
     socketio.run(app)
