@@ -82,7 +82,7 @@ def createHeatMap():
     mainMap.add_child(heat)
 
     # heatMap output
-    mainMap.save('heatMap.html')
+    mainMap.save('templates/heatMap.html')
 
 if __name__ == "__main__":
     creatHeatMap()

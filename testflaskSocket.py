@@ -8,13 +8,15 @@ app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
 @socketio.on('mapUpdateEvent')
-def generateMap():
+def map():
     mapGen.createHeatMap()
-    return send_file('heatMap.html')
+    print("I ran bitches")
 
-@app.route('/')
+    return send_file('heatMap.html', mimetype='text/html')
+
+@app.route('/sms', methods=['GET','POST'])
 def index():
     return render_template("index.html")
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     socketio.run(app)
+    #app.run(debug = True)
