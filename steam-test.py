@@ -26,7 +26,7 @@ class MyStreamListener(tweepy.StreamListener):
         #print(status.text)
         #print('==========')
         
-        if len(tweets) >= 100:
+        if len(tweets) >= 50:
             myStream.running = False
     
     def on_error(self, status_code):
@@ -40,7 +40,7 @@ myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener)
 #myStream.filter(locations=[-119.74,49.16,-110.52,59.85])
 
 #Canada
-myStream.filter(locations=[-136.90,43.67,-53.65,60.16])
+myStream.filter(locations=[-94.90,43.67,-53.65,60.16])
 
 #NY & LA
 #myStream.filter(locations=[-122.75,36.8,-121.75,37.8,-74,40,-73,41], async= True)
