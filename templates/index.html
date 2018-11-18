@@ -16,9 +16,9 @@
         var lon = mapObj.getCenter()["lng"];
         var zoom = mapObj.getZoom();
 
-        var theMap2Iframe = document.getElementById('theMapFrame2').contentWindow;
-        var map2ID = theMap2Iframe.document.body.childNodes[1].id;
-        var map2Obj = theMap2Iframe[map2ID];
+        //var theMap2Iframe = document.getElementById('theMapFrame2').contentWindow;
+        //var map2ID = theMap2Iframe.document.body.childNodes[1].id;
+        //var map2Obj = theMap2Iframe[map2ID];
 
         //map2Obj.setView([lat,lon],zoom);
         //map2Obj.setCenter()["lng"] = lon;
@@ -38,7 +38,7 @@
   </head>
   <body>
     <div>
-      <iframe id = "theMapFrame2" src="/static/heatMapBase.html" style="position :absolute; top:0; left:0;border: 0; width: 100%; height: 100%"></iframe>
+      
 
       <iframe id = "theMapFrame" src="/static/heatMap.html" style="position :absolute; top:0; left:0;border: 0; width: 100%; height: 100%"></iframe>
     </div>
