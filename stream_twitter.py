@@ -127,9 +127,9 @@ class MyStreamListener(tweepy.StreamListener):
                     self.connection.commit()
                 
                 
-                #if len(ids) >= 100:
-                    #self.connection.close()
-                    #return False
+                if len(ids) >= 100:
+                    self.connection.close()
+                    return False
     
     def on_error(self, status_code):
         print(status_code)
