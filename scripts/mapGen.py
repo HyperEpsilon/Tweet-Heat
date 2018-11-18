@@ -1,6 +1,5 @@
 import folium
 import numpy as num
-import pandas as pd
 import random
 from folium.plugins import HeatMap
 
@@ -25,7 +24,7 @@ folium.TileLayer('Stamen Terrain').add_to(mainMap)
 
 pingPoints = {'lat': [], 'lon': []}
 
-for i in range(499):
+for i in range(6000):
     pingPoints['lat'].append(ed['lat']+random.randrange(-10,10)*0.001)
     pingPoints['lon'].append(ed['lon']+random.randrange(-10,10)*0.001)
 
