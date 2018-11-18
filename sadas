@@ -8,16 +8,16 @@ app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
 @socketio.on('mapUpdateEvent')
-def generateMap():
+def map():
     mapGen.createHeatMap()
-    emit('mapCreated')
+    print("I ran bitches")
 
-    def show_map():
-        return flask.send_file('/maps/map.html')
+    return send_file('heatMap.html', mimetype='text/html')
 
 @app.route('/')
 def index():
     return render_template("index.html")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     socketio.run(app)
+    #app.run(debug = True)
