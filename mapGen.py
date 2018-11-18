@@ -4,6 +4,7 @@ import random
 import sqlite3, time
 from folium.plugins import HeatMap
 
+
 connection = None
 cursor = None
 
@@ -30,10 +31,19 @@ def get_data_points():
     
     return all_tweets
 
-def createHeatMap():
+
+
+#createHeatMap(heatArray)
+
+def createHeatMap(heat_Map_Array, start_lat=53.540996, start_lon=-113.497746):
     # generate the map
-    ed = {'lat': 53.540996, 'lon': 0-113.497746 }
-    mainMap = folium.Map(location=[ed['lat'], ed['lon']], zoom_start=10)
+    mainMap = folium.Map(
+        location=[start_lat, start_lon],
+        zoom_start=10,
+        no_wrap=True,
+        world_copy_jump=True,
+
+    )
 
     # add all layers
     """
@@ -49,74 +59,25 @@ def createHeatMap():
 
     pingPoints = {'lat': [], 'lon': []}
 
+    #print(pingPoints)
+    #print(list(zip(pingPoints['lat'], pingPoints['lon'])))
 
-    for i in range(499):
-        pingPoints['lat'].append(ed['lat']+random.randrange(-100,100)*0.01)
-        pingPoints['lon'].append(ed['lon']+random.randrange(-100,100)*0.01)
-
-    print(pingPoints)
-    print(list(zip(pingPoints['lat'], pingPoints['lon'])))
-
-    #data_points = [(53.60100728, -113.49972797),
-                   #(43.78865482, -110.9577686),
-                   #(44.94727, -93.09707),
-                   #(45.5038, -73.5744),
-                   #(47.16, -122.51),
-                   #(51.1667, -115.567),
-                   #(47.2410428, -122.40005186),
-                   #(45.5, -73.5167),
-                   #(44.0519, -123.087),
-                   #(49.35087662, -123.25325915),
-                   #(49.25, -123.11),
-                   #(44.2167, -114.938),
-                   #(43.1388, -77.6909),
-                   #(43.7166, -79.3407),
-                   #(45.3677, -122.843),
-                   #(45.29, -75.78),
-                   #(51.19091, -114.46804),
-                   #(51.13906229, -113.93970113),
-                   #(43.83264, -79.44034),
-                   #(45.57353889, -122.69246944),
-                   #(42.65073, -73.75325),
-                   #(50.6759, -120.33898),
-                   #(43.64875, -79.39763),
-                   #(43.63845, -79.38504),
-                   #(42.91888889, -112.40638889),
-                   #(48.82444444, -123.72138889),
-                   #(45.583674, -122.543899),
-                   #(43.89666667, -78.87388889),
-                   #(44.9161, -93.1014),
-                   #(43.92055556, -78.68888889),
-                   #(47.60864, -122.33769),
-                   #(45.5167, -73.65),
-                   #(47.5692, -122.6548),
-                   #(47.0991, -122.638),
-                   #(44.977753, -93.2650108),
-                   #(44.97504231, -93.23219554),
-                   #(47.68, -122.21),
-                   #(46.8667, -71.2667),
-                   #(45.52371, -122.674621),
-                   #(47.0468, -122.926),
-                   #(45.518237, -122.678249),
-                   #(48.4287, -123.3645),
-                   #(45.04892257, -122.97495467)]
-                   
-    data_points = get_data_points()
-
-    heat = HeatMap(data_points,
-                   min_opacity=0.2,
-                   max_val=1.0,
-                   radius=15, blur=15,
-                   max_zoom=1,)
+    heat = HeatMap(
+            heat_Map_Array,
+            min_opacity=0.2,
+            max_val=1.0,
+            radius=15, blur=15,
+            max_zoom=1,)
 
     mainMap.add_child(heat)
 
     # heatMap output
-    mainMap.save('heatMap.html')
+    mainMap.save('static/heatMap.html')
 
 if __name__ == "__main__":
     #createHeatMap()
     for i in range(10):
-        createHeatMap()
+        heatArray = get_data_points()
+        createHeatMap(heatArray,53.540996,-113.497746)
         time.sleep(2)
     input()

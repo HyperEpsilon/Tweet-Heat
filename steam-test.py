@@ -119,6 +119,7 @@ class MyStreamListener(tweepy.StreamListener):
     
     def on_status(self, status):
         
+
         if status.place:
             tweets.append(status)
             
@@ -168,6 +169,7 @@ def start_stream():
     #print('BLA BLA BLA')
     #time.sleep(3)
     #print('HA HA HA')
+
 
 if __name__ == "__main__":
     start_stream()
