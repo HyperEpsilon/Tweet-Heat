@@ -40,11 +40,7 @@ def createHeatMap(heat_Map_Array, start_lat=53.540996, start_lon=-113.497746, st
 
     mainMap = folium.Map(
         location=[start_lat, start_lon],
-<<<<<<< HEAD
-        zoom_start=4,
-=======
         zoom_start=start_zoom,
->>>>>>> refs/remotes/origin/master
         no_wrap=True,
         world_copy_jump=True,
 
