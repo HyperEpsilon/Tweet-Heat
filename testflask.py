@@ -68,5 +68,5 @@ def index():
     return render_template("index.html")
 
 if __name__ == '__main__':
-    p=Popen(['python stream_twitter'], shell=True)
+    p=Popen(['python', '.\stream_twitter.py'], shell=True)
     socketio.run(app)
