@@ -1,6 +1,6 @@
 # Tweet Heat
 
-![example screenshot](example2.png)
+![example screenshot](example.png)
 
 Our program crawls through Twitter data and receives live tweets from all over North America. 
 Of all these tweets collected, roughly 10 percent of have location data with it. The program then puts all of 
